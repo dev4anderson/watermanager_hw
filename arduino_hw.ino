@@ -66,8 +66,6 @@ if(WiFiMulti.run() == WL_CONNECTED){   //Check WiFi connection status
     litrosStr = litros;
  
    JSONencoder["liter"] = litrosStr;
-   JSONencoder["month"] = "9";
-   JSONencoder["year"] = "2017";
    JSONencoder["serial"] = WiFi.macAddress();
 
     
