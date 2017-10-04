@@ -6,8 +6,6 @@
 ESP8266WiFiMulti WiFiMulti;
 
 float vazao;      //Variável para armazenar o valor em L/min
-float media = 0;  //Variável para tirar a média a cada 1 minuto
-int contaPulso;   //Variável para a quantidade de pulsos
 int i = 0;        //Variável para contagem
 int contpulso;
 double litros;
@@ -40,20 +38,16 @@ void loop() {
 
 void incpulso ()
 {
-  contaPulso++; //Incrementa a variável de contagem dos pulsos
   contpulso++;
 }
 
 void calcLitros ()
 {
-    contaPulso = 0;   //Zera a variável para contar os giros por segundos
     sei();      //Habilita interrupção
     delay (1000); //Aguarda 1 segundo
     cli();      //Desabilita interrupção
     cont = contpulso;
     litros = (cont)/330;
-    vazao = contaPulso / 5.5; //Converte para L/min
-    media = media+vazao; //Soma a vazão para o calculo da media
     i++;
 }
 
@@ -98,14 +92,13 @@ void enviaDados ()
 void limpaLitros ()
 {
     i = 0;
-    contaPulso = 0;
     contpulso = 0;  
 }
 
 void conectaWifi ()
 {
   // Conexão com rede Wifi
-    WiFiMulti.addAP("******", "********");
+    WiFiMulti.addAP("AndroidA5", "iotfiap123");
 
     Serial.print("Wait for WiFi... ");
 
